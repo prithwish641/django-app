@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AWS DevOps Guru Insights</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="{% static 'scripts.js' %}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>AWS DevOps Guru Insights</h2>
+        <button onclick="toggleFormat('dictionary')">Dictionary</button>
+        <button onclick="toggleFormat('bullets')">Bullets</button>
+    </div>
+
+    <!-- Initially hide both formats -->
+    <div class="dictionary-format" style="display:none;">
+        <h2>Reactive Insights</h2>
+        {% if reactive_insights %}
+        <ol>
+            {% for insight in reactive_insights %}
+            <li>{{ insight }}</li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p>No reactive insights found.</p>
+        {% endif %}
+
+        <h2>Proactive Insights</h2>
+        {% if proactive_insights %}
+        <ol>
+            {% for insight in proactive_insights %}
+            <li>{{ insight }}</li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p>No proactive insights found.</p>
+        {% endif %}
+    </div>
+
+    <div class="bullets-format" style="display:none;">
+        <h2>Reactive Insights</h2>
+        {% if reactive_insights %}
+        <ol>
+            {% for insight in reactive_insights %}
+            <li>
+                Insight Id - {{ insight.Id }}<br>
+                Name - {{ insight.Name }}<br>
+                Severity - {{ insight.Severity }}<br>
+                Status - {{ insight.Status }}<br>
+                Insight Time Range - {{ insight.InsightTimeRange }}<br>
+                Service Collection - {{ insight.ServiceCollection }}
+            </li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p>No reactive insights found.</p>
+        {% endif %}
+
+        <h2>Proactive Insights</h2>
+        {% if proactive_insights %}
+        <ol>
+            {% for insight in proactive_insights %}
+            <li>
+                Insight Id - {{ insight.Id }}<br>
+                Name - {{ insight.Name }}<br>
+                Severity - {{ insight.Severity }}<br>
+                Status - {{ insight.Status }}<br>
+                Insight Time Range - {{ insight.InsightTimeRange }}<br>
+                Service Collection - {{ insight.ServiceCollection }}
+            </li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p>No proactive insights found.</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
